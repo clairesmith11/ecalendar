@@ -8,6 +8,10 @@ body {
   box-sizing: border-box;
 }
 
+.text-cyan {
+  color: var(--cyan);
+}
+
 .month-picker {
   width: 400px;
   margin: auto;
@@ -16,6 +20,33 @@ body {
 .month-picker__link {
   color: gray !important;
   font-size: 1.25rem !important;
+}
+
+.events {
+  height: 500px;
+  width: 400px;
+  background-color: #eee;
+  margin: auto;
+  background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfIXrdUGojCtXtxbTKICI2kmgnuWR6Yuff_g&usqp=CAU');
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 5px;
+}
+
+.events-list__container {
+  height: 450px;
+  width: 95%;
+  border-left: 3px solid var(--cyan);
+}
+
+.events-list {
+  height: 95%;
+  width: 95%;
+  margin: auto;
+  padding: 1rem;
+  background-color: #eee;
+  opacity: 0.75;
+  border-radius: 5px;
 }
 
 .table {
@@ -27,12 +58,45 @@ body {
   cursor: pointer;
 }
 
-@media (max-width: 425px) {
-  .table {
+.circled {
+  border: 1px solid var(--cyan);
+  border-radius: 50%;
+}
+
+.add-event {
+  font-size: 4rem;
+  font-weight: bold;
+  color: var(--cyan);
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.add-event:hover {
+  transform: scale(0.95);
+}
+
+.modal-dialog {
+  max-width: 60vw !important;
+}
+
+.arrow {
+  font-size: 4rem;
+  color: #ccc;
+  cursor: pointer;
+}
+
+@media (max-width: 450px) {
+  .calendar {
     width: 300px !important;
+  }
+  .arrow {
+    font-size: 1.5rem;
   }
   .table td,
   .table th {
     font-size: 0.75rem !important;
+  }
+  .month-picker {
+    font-size: 1rem;
   }
 }
