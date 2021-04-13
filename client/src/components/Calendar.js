@@ -75,7 +75,7 @@ const Calendar = () => {
                 <Header year={year} />
                 <MonthPicker month={month} prev={prevMonth} next={nextMonth} />
                 <div className="calendar d-flex align-items-center">
-                    <p className="arrow" onClick={prevMonth}>&larr;</p>
+                    <p className="arrow" onClick={prevMonth}>&lsaquo;</p>
                     <Table className="my-3">
                         <thead className="text-center">
                             <tr>
@@ -103,7 +103,7 @@ const Calendar = () => {
                             })}
                         </tbody>
                     </Table>
-                    <p className="arrow" onClick={nextMonth}>&rarr;</p>
+                    <p className="arrow" onClick={nextMonth}>&rsaquo;</p>
                 </div>
             </Col>
             <Col>

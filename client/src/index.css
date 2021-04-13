@@ -27,10 +27,40 @@ body {
   width: 400px;
   background-color: #eee;
   margin: auto;
-  background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfIXrdUGojCtXtxbTKICI2kmgnuWR6Yuff_g&usqp=CAU');
   background-repeat: no-repeat;
   background-size: cover;
   border-radius: 5px;
+}
+
+.spring {
+  background: 
+    /* top, transparent red, faked with gradient */ linear-gradient(
+      rgba(255, 255, 255, 0.45),
+      rgba(255, 255, 255, 0.45)
+    ),
+    /* bottom, image */ url('./assets/images/spring.jpg');
+}
+
+.summer {
+  background-image: url('./assets/images/summer.jpg');
+}
+
+.fall {
+  background: 
+    /* top, transparent red, faked with gradient */ linear-gradient(
+      rgba(255, 255, 255, 0.45),
+      rgba(255, 255, 255, 0.45)
+    ),
+    /* bottom, image */ url('./assets/images/fall.jpg');
+}
+
+.winter {
+  background: 
+    /* top, transparent red, faked with gradient */ linear-gradient(
+      rgba(255, 255, 255, 0.45),
+      rgba(255, 255, 255, 0.45)
+    ),
+    /* bottom, image */ url('./assets/images/winter.jpg');
 }
 
 .events-list__container {
@@ -45,7 +75,7 @@ body {
   margin: auto;
   padding: 1rem;
   background-color: #eee;
-  opacity: 0.75;
+  opacity: 0.8;
   border-radius: 5px;
 }
 
@@ -83,6 +113,11 @@ body {
   font-size: 4rem;
   color: #ccc;
   cursor: pointer;
+}
+
+.day:active {
+  font-weight: bolder;
+  color: var(--cyan) !important;
 }
 
 @media (max-width: 450px) {

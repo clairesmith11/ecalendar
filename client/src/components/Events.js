@@ -12,8 +12,20 @@ const Events = ({ selectedDay }) => {
     const selectedMonth = dateFns.getMonth(selectedDay);
     const selectedDate = dateFns.getDate(selectedDay);
 
+    let season;
+    if (selectedMonth >= 2 && selectedMonth <= 4) {
+        season = 'spring';
+    } else if (selectedMonth >= 5 && selectedMonth <= 7) {
+        season = 'summer';
+    } else if (selectedMonth >= 8 && selectedMonth <= 10) {
+        season = 'fall';
+    } else {
+        season = 'winter';
+    }
+
+
     return (
-        <div className="events my-5 d-flex flex-column pt-4 px-4 text-dark">
+        <div className={`events my-5 d-flex flex-column pt-4 px-4 text-dark ${season}`}>
             <h3 className="m-0">{daysLong[selectedDayOfWeek]}</h3>
             <h2>{monthsLong[selectedMonth]} {selectedDate}</h2>
             <div className="events-list__container pl-4">

@@ -5,7 +5,8 @@ const Day = ({ day, month, endOfMonth, clicked }) => {
     return (
         <td
             className={
-                `text-center 
+                `day
+                text-center 
                 ${dateFns.isBefore(day, month) || dateFns.isAfter(day, endOfMonth) ? 'text-muted' : 'text-dark'}`}
             onClick={() => { clicked(day); }}>
             <p className={`${dateFns.isToday(day) && 'circled'}`}
