@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
 import * as dateFns from 'date-fns';
+import axios from 'axios';
 
 import AddEvent from './AddEvent';
 
@@ -40,22 +41,35 @@ const Events = ({ selectedDay, events }) => {
         season = 'winter';
     }
 
+    const deleteEventHandler = async (id) => {
+        if (window.confirm('Are you sure?')) {
+            try {
+                await axios.delete(`http://localhost:5000/api/event/${id}`);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+    };
+
 
     return (
-        <div className={`events my-5 d-flex flex-column pt-4 px-4 text-dark ${season}`}>
+        <div className={`events my-5 d-flex flex-column text-dark ${season}`}>
             <h3 className="m-0">{daysLong[selectedDayOfWeek]}</h3>
             <h2>{monthsLong[selectedMonth]} {selectedDate}</h2>
-            <div className="events-list__container pl-4">
+            <div className="events-list__container">
                 <div className="events-list my-2">
                     {dayHasEvent.length === 0
                         ? <p>No appointments</p>
                         : dayHasEvent.map(event => {
                             return (
-                                <div className="d-flex justify-content-between align-items-center flex-wrap">
-                                    <p key={event._id}><strong>{formatTime(event.startTime)}</strong> {event.title}</p>
+                                <div className="d-flex justify-content-between align-items-center">
+                                    <p key={event._id} className="event-title"><strong>{formatTime(event.startTime)}</strong> {event.title}</p>
                                     <div>
-                                        <Button className="btn-symbol mr-1 p-1" type="primary">&#9998;</Button>
-                                        <Button className="btn-symbol p-1" type="danger">&#128465;</Button>
+                                        <Button className="btn-symbol mr-1 p-1" variant="outline-dark">&#9998;</Button>
+                                        <Button
+                                            className="btn-symbol p-1"
+                                            variant="danger"
+                                            onClick={() => deleteEventHandler(event._id)}>&#128465;</Button>
                                     </div>
                                 </div>
                             );

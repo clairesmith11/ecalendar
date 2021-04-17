@@ -19,7 +19,7 @@ body {
 
 .month-picker__link {
   color: gray !important;
-  font-size: 1.25rem !important;
+  font-size: 1.25rem;
 }
 
 .events {
@@ -30,6 +30,7 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   border-radius: 5px;
+  padding: 1rem;
 }
 
 .spring {
@@ -70,8 +71,9 @@ body {
 
 .events-list__container {
   height: 450px;
-  width: 95%;
+  max-width: 95%;
   border-left: 3px solid var(--cyan);
+  padding-left: 1rem;
 }
 
 .events-list {
@@ -139,9 +141,13 @@ body {
   color: var(--cyan) !important;
 }
 
+.event-title {
+  flex: 0 0 60%;
+}
+
 @media (max-width: 450px) {
   .calendar {
-    width: 300px !important;
+    max-width: 250px !important;
   }
   .arrow {
     font-size: 1.5rem;
@@ -151,6 +157,22 @@ body {
     font-size: 0.75rem !important;
   }
   .month-picker {
-    font-size: 1rem;
+    max-width: 300px;
+  }
+  .month-picker__link {
+    font-size: 0.9rem;
+  }
+  .month-picker__active {
+    font-size: 1.2rem;
+  }
+  .events {
+    max-width: 90vw;
+    padding-left: 0.75rem;
+  }
+  .events-list__container {
+    padding-left: 0.25rem;
+  }
+  .event-marker {
+    top: 0%;
   }
 }

@@ -103,24 +103,24 @@ const Calendar = () => {
                                 })}
                             </tr>
                         </thead>
-                        {events.length > 0 &&
-                            <tbody>
-                                {getDaysInMonth().map((week, index) => {
-                                    return (
-                                        <tr key={index}>
-                                            {week.map(d => {
-                                                return <Day
-                                                    key={d.day}
-                                                    day={d.day}
-                                                    month={selectedMonth}
-                                                    endOfMonth={endOfMonth}
-                                                    events={events}
-                                                    clicked={selectDayHandler} />;
-                                            })}
-                                        </tr>
-                                    );
-                                })}
-                            </tbody>}
+
+                        <tbody>
+                            {getDaysInMonth().map((week, index) => {
+                                return (
+                                    <tr key={index}>
+                                        {week.map(d => {
+                                            return <Day
+                                                key={d.day}
+                                                day={d.day}
+                                                month={selectedMonth}
+                                                endOfMonth={endOfMonth}
+                                                events={events}
+                                                clicked={selectDayHandler} />;
+                                        })}
+                                    </tr>
+                                );
+                            })}
+                        </tbody>
                     </Table>
                     <p className="arrow" onClick={nextMonth}>&rsaquo;</p>
                 </div>
