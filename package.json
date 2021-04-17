@@ -1,0 +1,30 @@
+{
+  "name": "e-calendar",
+  "version": "1.0.0",
+  "description": "Events calendar web app",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "dev": "nodemon server/server.js",
+    "client": "npm start --prefix client"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/clairesmith11/ecalendar.git"
+  },
+  "author": "Claire Smith",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/clairesmith11/ecalendar/issues"
+  },
+  "homepage": "https://github.com/clairesmith11/ecalendar#readme",
+  "dependencies": {
+    "date-fns": "^2.21.1",
+    "express": "^4.17.1",
+    "express-async-handler": "^1.1.4",
+    "mongoose": "^5.12.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
