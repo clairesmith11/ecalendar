@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
+import { Context } from '../store';
 import { Table, Col } from 'react-bootstrap';
 import * as dateFns from "date-fns";
 import axios from 'axios';
@@ -8,40 +9,53 @@ import MonthPicker from './MonthPicker';
 import Events from './Events';
 import Day from './Day';
 import Message from './Message';
+import Loading from './Loading';
 
 const Calendar = () => {
+    const [{ events }, dispatch] = useContext(Context);
+
+    const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(false);
+
+    //State for determining date values for current selection and initial values (app will initialize on today's date)
     const [today] = useState(new Date());
     const [month, setMonth] = useState(dateFns.getMonth(today));
     const [year, setYear] = useState(dateFns.getYear(today));
     const [selectedDay, setSelectedDay] = useState(today);
-    const [events, setEvents] = useState([]);
-    const [error, setError] = useState(null);
 
     const daysShort = ['Sun', 'Mon', 'Tues', 'Wed', "Thu", "Fri", "Sat"];
     const selectedMonth = new Date(year, month);
+    //Find date of last day of the month
     const endOfMonth = dateFns.lastDayOfMonth(selectedMonth);
+    //For the week that contains the first day of the month, find the first day of that week (if month does not start on Sunday, days from previous month will be shown) 
     const firstWeekOfMonthStart = dateFns.startOfWeek(selectedMonth);
+    //For the week that contains the last day of the month, find the last day of that week (if month does not end on Saturday, days from next month will be shown)
     const lastWeekOfMonthEnd = dateFns.endOfWeek(endOfMonth);
 
+    //Fetch events from DB on page load
     useEffect(() => {
         const getEvents = async () => {
+            setLoading(true);
             try {
                 const { data } = await axios.get('http://localhost:5000/api/event');
-                setEvents(data.events);
+                //Set app state to results of getEvents call
+                dispatch({ type: 'SET_EVENTS', payload: data.events });
+                setLoading(false);
             } catch (error) {
                 setError(error.response ? error.response.data.message : 'Something went wrong');
+                setLoading(false);
             }
         };
         getEvents();
-    }, []);
+    }, [dispatch]);
 
-    //Find number of days for selected month
+    //Display calendar
     const getDaysInMonth = () => {
         let rows = [];
         let days = [];
         let day = firstWeekOfMonthStart;
 
-        //Loop for as long as the day is before the last day of the final week of the month
+        //Loop as long as the day is before the last day of the final week of the month
         while (day <= lastWeekOfMonthEnd) {
             for (let i = 1; i <= 7; i++) {
                 days.push({ day });
@@ -91,42 +105,45 @@ const Calendar = () => {
                 <Header year={year} />
                 <MonthPicker month={month} prev={prevMonth} next={nextMonth} />
                 {error && <Message message={error} />}
-                <div className="calendar d-flex align-items-center">
-                    <p className="arrow" onClick={prevMonth}>&lsaquo;</p>
-                    <Table className="my-3">
-                        <thead className="text-center">
-                            <tr>
-                                {daysShort.map(day => {
-                                    return (
-                                        <td className="text-cyan" key={day}>{day.toUpperCase()}</td>
-                                    );
-                                })}
-                            </tr>
-                        </thead>
-
-                        <tbody>
-                            {getDaysInMonth().map((week, index) => {
-                                return (
-                                    <tr key={index}>
-                                        {week.map(d => {
-                                            return <Day
-                                                key={d.day}
-                                                day={d.day}
-                                                month={selectedMonth}
-                                                endOfMonth={endOfMonth}
-                                                events={events}
-                                                clicked={selectDayHandler} />;
+                <div className="calendar d-flex align-items-center justify-content-center">
+                    {loading ? <Loading /> :
+                        <>
+                            <p className="arrow" onClick={prevMonth}>&lsaquo;</p>
+                            <Table className="my-3">
+                                <thead className="text-center">
+                                    <tr>
+                                        {daysShort.map(day => {
+                                            return (
+                                                <td className="text-cyan" key={day}>{day.toUpperCase()}</td>
+                                            );
                                         })}
                                     </tr>
-                                );
-                            })}
-                        </tbody>
-                    </Table>
-                    <p className="arrow" onClick={nextMonth}>&rsaquo;</p>
+                                </thead>
+
+                                {events && <tbody>
+                                    {getDaysInMonth().map((week, index) => {
+                                        return (
+                                            <tr key={index}>
+                                                {week.map(d => {
+                                                    return <Day
+                                                        key={d.day}
+                                                        day={d.day}
+                                                        month={selectedMonth}
+                                                        endOfMonth={endOfMonth}
+                                                        events={events}
+                                                        clicked={selectDayHandler} />;
+                                                })}
+                                            </tr>
+                                        );
+                                    })}
+                                </tbody>}
+                            </Table>
+                            <p className="arrow" onClick={nextMonth}>&rsaquo;</p>
+                        </>}
                 </div>
             </Col>
             <Col>
-                <Events selectedDay={selectedDay} events={events} />
+                <Events selectedDay={selectedDay} />
             </Col>
         </React.Fragment>
     );

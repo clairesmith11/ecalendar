@@ -1,3 +1,5 @@
+/* GLOBAL  */
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -8,19 +10,70 @@ body {
   box-sizing: border-box;
 }
 
+/* UTILITIES */
+
 .text-cyan {
   color: var(--cyan);
 }
+
+.text-light-gray {
+  color: #ccc;
+}
+
+/* HEADER */
 
 .month-picker {
   width: 400px;
   margin: auto;
 }
 
-.month-picker__link {
+.month-picker__inactive {
   color: gray !important;
   font-size: 1.25rem;
 }
+
+/* CALENDAR TABLE */
+
+.table {
+  width: 400px !important;
+  margin: auto;
+}
+
+.table td {
+  cursor: pointer;
+}
+
+.arrow {
+  font-size: 4rem;
+  color: #ccc;
+  cursor: pointer;
+}
+
+.circled {
+  border: 1px solid var(--cyan);
+  border-radius: 50%;
+  padding-left: 0.2rem;
+  padding-right: 0.2rem;
+}
+
+.day {
+  position: relative;
+}
+
+.day:active {
+  font-weight: bolder;
+  color: var(--cyan) !important;
+}
+
+.event-marker {
+  font-size: 2.5rem;
+  color: var(--cyan);
+  position: absolute;
+  top: 15%;
+  left: 45%;
+}
+
+/* EVENTS BOX */
 
 .events {
   height: 500px;
@@ -31,6 +84,27 @@ body {
   background-size: cover;
   border-radius: 5px;
   padding: 1rem;
+}
+
+.events-list__container {
+  height: 450px;
+  max-width: 95%;
+  border-left: 3px solid var(--cyan);
+  padding-left: 1rem;
+}
+
+.events-list {
+  height: 95%;
+  width: 95%;
+  margin: auto;
+  padding: 1rem;
+  background-color: #eee;
+  opacity: 0.8;
+  border-radius: 5px;
+}
+
+.event-title {
+  flex: 0 0 60%;
 }
 
 .spring {
@@ -69,50 +143,7 @@ body {
     /* bottom, image */ url('./assets/images/winter.jpg');
 }
 
-.events-list__container {
-  height: 450px;
-  max-width: 95%;
-  border-left: 3px solid var(--cyan);
-  padding-left: 1rem;
-}
-
-.events-list {
-  height: 95%;
-  width: 95%;
-  margin: auto;
-  padding: 1rem;
-  background-color: #eee;
-  opacity: 0.8;
-  border-radius: 5px;
-}
-
-.table {
-  width: 400px !important;
-  margin: auto;
-}
-
-.table td {
-  cursor: pointer;
-}
-
-.circled {
-  border: 1px solid var(--cyan);
-  border-radius: 50%;
-  padding-left: 0.2rem;
-  padding-right: 0.2rem;
-}
-
-.day {
-  position: relative;
-}
-
-.event-marker {
-  font-size: 2.5rem;
-  color: var(--cyan);
-  position: absolute;
-  top: 15%;
-  left: 45%;
-}
+/* ADD EVENT MODAL */
 
 .add-event {
   font-size: 4rem;
@@ -130,40 +161,34 @@ body {
   max-width: 60vw !important;
 }
 
-.arrow {
-  font-size: 4rem;
-  color: #ccc;
-  cursor: pointer;
-}
+/* MEDIA QUERIES */
 
-.day:active {
-  font-weight: bolder;
-  color: var(--cyan) !important;
-}
-
-.event-title {
-  flex: 0 0 60%;
+@media (max-width: 750px) {
+  .modal-dialog {
+    max-width: 95vw !important;
+  }
 }
 
 @media (max-width: 450px) {
+  .month-picker {
+    max-width: 300px;
+  }
+  .month-picker__inactive {
+    font-size: 0.9rem;
+  }
+  .month-picker__active {
+    font-size: 1.2rem;
+  }
   .calendar {
     max-width: 250px !important;
-  }
-  .arrow {
-    font-size: 1.5rem;
+    margin: auto;
   }
   .table td,
   .table th {
     font-size: 0.75rem !important;
   }
-  .month-picker {
-    max-width: 300px;
-  }
-  .month-picker__link {
-    font-size: 0.9rem;
-  }
-  .month-picker__active {
-    font-size: 1.2rem;
+  .arrow {
+    font-size: 2rem;
   }
   .events {
     max-width: 90vw;
