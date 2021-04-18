@@ -8,7 +8,7 @@ An events calendar app built with React, Node/Express and MongoDb. This app was 
 
 ## Features
 
-- The app accurately displays a scrollable calendar which can go display months from the past or future. It determines and marks the current day.
+- The app accurately displays a scrollable calendar which can display months from the past or future. It determines and marks the current day.
 - The app allows a user to add an event with a title, date, time and location.
 - The user's events are saved to a database for persistence.
 - The user can edit or delete an existing event.
