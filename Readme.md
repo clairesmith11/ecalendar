@@ -1,4 +1,4 @@
-## #eCalendar
+#eCalendar
 
 ##Overview
 
