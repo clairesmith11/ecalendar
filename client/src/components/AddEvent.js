@@ -67,6 +67,12 @@ const AddEvent = ({ edit, eventId }) => {
     const handleClose = () => {
         setShow(false);
         setError(null);
+
+        setTitle('');
+        setDate('');
+        setStartTime('12:00');
+        setLocation('');
+        setPeople('');
     };
 
     //Open the modal
