@@ -68,6 +68,7 @@ const AddEvent = ({ edit, eventId }) => {
         setShow(false);
         setError(null);
 
+        //Reset form fields
         setTitle('');
         setDate('');
         setStartTime('12:00');
