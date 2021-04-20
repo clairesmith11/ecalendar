@@ -80,7 +80,9 @@ const Events = ({ selectedDay }) => {
                                         <Button
                                             className="btn-symbol p-1"
                                             variant="danger"
-                                            onClick={() => deleteEventHandler(event._id)}>&#128465;</Button>
+                                            onClick={() => deleteEventHandler(event._id)}
+                                        ><i className="fas fa-trash"></i></Button>
+
                                     </div>
                                 </div>
                             );

@@ -20,6 +20,7 @@ Additional packages include:
 
 - [date-fns](https://date-fns.org/): A modern JavaScript date utility library
 - [React-Bootstrap](https://react-bootstrap.github.io/): A CSS component library for React
+- [fontawesome](https://fontawesome.com): A font icon library
 - [axios](https://www.npmjs.com/package/axios): A promise-based HTTP client for node.js
 
 ## Running this project locally

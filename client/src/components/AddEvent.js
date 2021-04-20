@@ -96,9 +96,11 @@ const AddEvent = ({ edit, eventId }) => {
                 <Button
                     className="btn-symbol mr-1 p-1"
                     variant="outline-dark"
-                    onClick={handleShow}>&#9998;</Button>
+                    onClick={handleShow}><i className="fas fa-edit"></i></Button>
                 :
-                <div className="add-event text-center m-0" onClick={handleShow}>+</div>}
+                <div
+                    className="add-event text-center m-0"
+                    onClick={handleShow}><i className="fas fa-plus"></i></div>}
             <Modal className="modal" show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
                     <Modal.Title className="text-cyan">{edit ? 'Edit Event' : 'New Event'}</Modal.Title>
