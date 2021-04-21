@@ -4,7 +4,7 @@
   "description": "Events calendar web app",
   "main": "server.js",
   "scripts": {
-    "start": "node server/server.js",
+    "start": "node start -p $PORT",
     "dev": "nodemon server/server.js",
     "client": "npm start --prefix client",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm build --prefix client"

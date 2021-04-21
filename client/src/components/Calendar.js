@@ -37,7 +37,7 @@ const Calendar = () => {
         const getEvents = async () => {
             setLoading(true);
             try {
-                const { data } = await axios.get('http://localhost:5000/api/event');
+                const { data } = await axios.get('/api/event');
                 //Set app state to results of getEvents call
                 dispatch({ type: 'SET_EVENTS', payload: data.events });
                 setLoading(false);
