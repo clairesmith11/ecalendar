@@ -33,7 +33,7 @@ const AddEvent = ({ edit, eventId }) => {
                 setLoading(false);
                 //Check if we are in edit mode or new event mode. If editing, perform patch request. Otherwise, post request.
             } else if (!edit) {
-                const newEvent = await axios.post('http://localhost:5000/api/event', {
+                const newEvent = await axios.post('/api/event', {
                     title,
                     date,
                     startTime,
@@ -45,7 +45,7 @@ const AddEvent = ({ edit, eventId }) => {
                 dispatch({ type: 'SET_EVENTS', payload: events.concat(newEvent.data.event) });
                 handleClose();
             } else {
-                const updatedEvent = await axios.patch(`http://localhost:5000/api/event/${eventId}`, {
+                const updatedEvent = await axios.patch(`/api/event/${eventId}`, {
                     title,
                     date,
                     startTime,

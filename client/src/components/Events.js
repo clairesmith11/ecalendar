@@ -54,7 +54,7 @@ const Events = ({ selectedDay }) => {
     const deleteEventHandler = async (id) => {
         if (window.confirm('Are you sure?')) {
             try {
-                await axios.delete(`http://localhost:5000/api/event/${id}`);
+                await axios.delete(`/api/event/${id}`);
 
                 dispatch({ type: 'SET_EVENTS', payload: events.filter(event => event._id !== id) });
             } catch (error) {
