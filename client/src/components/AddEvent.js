@@ -35,7 +35,7 @@ const AddEvent = ({ edit, eventId }) => {
             } else if (!edit) {
                 const newEvent = await axios.post('/api/event', {
                     title,
-                    date,
+                    date: date.toLocaleString(),
                     startTime,
                     location,
                     people
