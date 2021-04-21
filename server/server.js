@@ -1,8 +1,12 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const path = require('path');
+const dotenv = require('dotenv');
 const eventRoutes = require('./eventRoutes');
 const { notFoundError, errorHandler } = require('./errorHandler');
 
+//Configure dotenv
+dotenv.config();
 //Init express app
 const app = express();
 //Parse body to JSON
@@ -17,7 +21,7 @@ app.use((req, res, next) => {
 //Connect MongoDb database
 const connectToDb = async () => {
     try {
-        const connection = await mongoose.connect("mongodb://localhost:27017/testdb", {
+        const connection = await mongoose.connect(process.env.MONGO_URI, {
             useUnifiedTopology: true,
             useNewUrlParser: true,
             useCreateIndex: true
@@ -30,10 +34,14 @@ const connectToDb = async () => {
 };
 
 connectToDb();
-//Connection
-app.get('/', (req, res) => res.send('Welcome to the API'));
 //Routing
 app.use('/api/event', eventRoutes);
+//Set static assets for production
+if (process.env.NODE_ENV === 'production') {
+    const __dirname = path.resolve();
+    app.use(express.static(path.join(__dirname, '/client/build')));
+    app.get('*', (req, res) => res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html')));
+}
 //Error handling
 app.use(notFoundError);
 app.use(errorHandler);

@@ -108,7 +108,7 @@ const Calendar = () => {
                 <div className="calendar d-flex align-items-center justify-content-center">
                     {loading ? <Loading /> :
                         <>
-                            <i class="arrow fas fa-chevron-left" onClick={prevMonth}></i>
+                            <i className="arrow fas fa-chevron-left" onClick={prevMonth}></i>
                             <Table className="my-3">
                                 <thead className="text-center">
                                     <tr>
@@ -138,7 +138,7 @@ const Calendar = () => {
                                     })}
                                 </tbody>}
                             </Table>
-                            <i class="arrow fas fa-chevron-right" onClick={nextMonth}></i>
+                            <i className="arrow fas fa-chevron-right" onClick={nextMonth}></i>
                         </>}
                 </div>
             </Col>
