@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import * as dateFns from 'date-fns';
 
 const Day = ({ day, month, endOfMonth, clicked, events }) => {
 
     //Determine if the selected day has any events 
-    const dayHasEvent = events.filter(event => new Date(event.date).toString() === day.toString());
+    const dayHasEvent = events.filter(event => dateFns.format(new Date(event.date), 'MM/dd/yyyy') === dateFns.format(day, 'MM/dd/yyyy'));
 
     return (
         <td

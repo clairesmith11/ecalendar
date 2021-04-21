@@ -20,7 +20,7 @@ const Events = ({ selectedDay }) => {
 
     //Check whether any of the saved events are happening on the selected day and sort those events earliest to latest by start time
     const dayHasEvent = events
-        .filter(event => new Date(event.date).toString() === selectedDay.toString())
+        .filter(event => dateFns.format(new Date(event.date), 'MM/dd/yyyy') === dateFns.format(selectedDay, 'MM/dd/yyyy'))
         .sort((a, b) => +a.startTime.split(':')[0] - +b.startTime.split(':')[0]);
 
     //Since time is saved as a 24-hour hh:mm string in our DB, convert the time to 12-hour with AM or PM
