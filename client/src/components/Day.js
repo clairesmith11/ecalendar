@@ -2,14 +2,10 @@ import React, { useState } from 'react';
 import * as dateFns from 'date-fns';
 
 const Day = ({ day, month, endOfMonth, clicked, events }) => {
-    const convertDate = (date) => {
-        const dateToConvert = new Date(date);
-        return dateToConvert.toUTCString();
-    };
     //Determine if the selected day has any events 
-    const [dayHasEvent] = useState(events.filter(event => dateFns.format(new Date(event.date), 'MM/dd/yyyy') === dateFns.format(day, 'MM/dd/yyyy')));
-    const [dayy] = useState(events.map(event => new Date(event.date).toString().split(' ').splice(0, 4).join(' ')));
-    const [clickedDay] = useState(day.toString().split(' ').splice(0, 4).join(' '));
+    const dayHasEvent = events.filter(event => dateFns.format(new Date(event.date), 'MM/dd/yy') === dateFns.format(day, 'MM/dd/yy'));
+    const [dayy] = useState(events.map(event => dateFns.format(new Date(event.date), 'MM/dd/yy')));
+    const [clickedDay] = useState(dateFns.format(day, 'MM/dd/yy'));
     return (
         <td
             className={
