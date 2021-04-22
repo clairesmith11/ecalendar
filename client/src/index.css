@@ -30,6 +30,7 @@ body {
 .month-picker__inactive {
   color: gray !important;
   font-size: 1.25rem;
+  cursor: pointer;
 }
 
 /* CALENDAR TABLE */
@@ -197,7 +198,7 @@ body {
     font-size: 0.75rem !important;
   }
   .arrow {
-    font-size: 1.5rem;
+    display: none;
   }
   .events {
     max-width: 90vw;

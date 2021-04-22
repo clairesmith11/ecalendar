@@ -29,7 +29,7 @@ const AddEvent = ({ edit, eventId }) => {
         try {
             //Check if user has inputted date in a valid format
             if (!dateFns.isValid(new Date(date))) {
-                setError('Please enter a valid date.');
+                setError('Please enter a valid date in mm/dd/yy format.');
                 setLoading(false);
                 //Check if we are in edit mode or new event mode. If editing, perform patch request. Otherwise, post request.
             } else if (!edit) {
