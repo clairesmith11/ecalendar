@@ -4,7 +4,7 @@
 
 An events calendar app built with React, Node/Express and MongoDb. This app was created for the Chingu Voyage 30 prework.
 
-**LIVE LINK:**
+Click [here](ecalendar-2021.herokuapp.com/) to go to the live site.
 
 ## Features
 
